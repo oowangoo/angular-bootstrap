@@ -61,21 +61,23 @@ module.exports = (grunt)->
         src:['**/*.*']
         dest:'docs/assets'
     watch:
+      options:
+        livereload: true
       bootstrap_sass:
         files:'src/stylesheet/**/*.scss'
-        tasks:['sass:bootstrap','copy:docs_server']
+        tasks:['sass:bootstrap','copy:server']
       bootstrap_coffee:
         files:['src/javascript/**/*.coffee','!src/javascript/**/test/*.coffee','!src/javascript/**/docs/*.coffee']
-        tasks:['coffee:bootstrap','copy:docs_server']
+        tasks:['coffee:bootstrap','copy:server']
       test_coffee:
         files:['src/javascript/**/test/*.coffee']
-        tasks:['coffee:test','copy:docs_server']
+        tasks:['coffee:test','copy:server']
       demo_coffee:
         files:["src/javascript/**/docs/*.coffee"]
-        tasks:['coffee:demo','copy:docs_server']
+        tasks:['coffee:demo','copy:server']
       bootstrap_js:
         files:['src/javascript/**/*.js','!src/javascript/**/docs/*.js','!src/javascript/**/test/*.js']
-        tasks:['copy:javascript','copy:docs_server']
+        tasks:['copy:javascript','copy:server']
       test_js:
         files:["src/javascript/**/test/*.js"]
         tasks:['copy:test']
@@ -94,6 +96,8 @@ module.exports = (grunt)->
             NODE_ENV: 'development'
     concurrent:
       docs:
+        options:
+          logConcurrentOutput: true
         tasks:['nodemon','watch']
 
   )
@@ -141,5 +145,7 @@ module.exports = (grunt)->
 
     'copy:server'
 
-    'concurrent'
+    'ms'
+
+    'concurrent:docs'
   ])
