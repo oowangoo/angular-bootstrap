@@ -1,3 +1,5 @@
+fs = require('fs')
+path = require('path')
 module.exports = (grunt)->
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
   grunt.initConfig(
@@ -95,6 +97,35 @@ module.exports = (grunt)->
         tasks:['nodemon','watch']
 
   )
+
+  writeModle = (moduleList)->
+    filePath = './docs/views/index.ejs'
+    index = fs.readFileSync(filePath,{encoding:'utf-8'})
+    r = /<\!\-\-\s*begin\s*module\s*\-\->([\s|\w|<|\'|\"|\=|<|>|/|\/|\.]*)<\!\-\-\s*end\s*\-\->/
+    scripts = []
+    for module in moduleList
+      scripts.push "<script type='text/javascript' src='/javascript/#{module}/#{module}.js'></script>"
+    banner = "<!-- begin module -->\n\t#{scripts.join('\n\t')}\n\t<!-- end -->"
+    index = index.replace(r,banner)
+    fs.writeFileSync(filePath,index,{encoding:'utf-8'},)
+
+  findModule = (base)->
+    dirs = fs.readdirSync(base)
+    module = []
+    for d in dirs
+      p = base + '/' + d
+      stat = fs.statSync(p)
+      if stat.isDirectory()
+        name = path.basename(p)
+        module.push name
+    return module
+
+
+  grunt.registerTask('ms','生成js引用',()->
+    moduleList = findModule('src/javascript')
+    writeModle(moduleList)
+  )
+
   grunt.registerTask('s',[
     'clean'
     'sass:bootstrap'
