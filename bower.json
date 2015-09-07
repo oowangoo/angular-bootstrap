@@ -1,0 +1,24 @@
+{
+  "name": "angular-bootstrap",
+  "version": "0.0.0",
+  "homepage": "https://github.com/oowangoo/angular-bootstrap",
+  "authors": [
+    "cy <cy@fir.im>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5"
+  },
+  "devDependencies": {
+    "angular": "~1.4.5",
+    "angular-mocks": "~1.4.5",
+    "angular-sanitize": "~1.4.5"
+  }
+}
