@@ -5,7 +5,7 @@ angular.module("ui.bootstrap",[]).directive('collapse',[
   '$animate'
   ($animate)->
     expand = (elem)->
-      #Õ¹¿ª
+      
       elem.removeClass("collapse")
       .addClass('collapsing')
       $animate.addClass(elem,'in',{
@@ -32,11 +32,20 @@ angular.module("ui.bootstrap",[]).directive('collapse',[
       }).then(()->
         collapseDone(elem)
       )
-    collapseDone = ()->
-      ;
+    collapseDone = (elem)->
+      elem.css({height:'0'}).removeClass("collapsing").addClass("collapse")
     return {
       link:(scope,elem,attrs)->
-        ;
+
+        model = attrs.model || 'auto'
+
+
+        scope.$watch(attrs.collapse,(shouldCollapse)->
+          if shouldCollapse
+            collapse(elem)
+          else
+            expand(elem)
+        )
 
     }
 ])
