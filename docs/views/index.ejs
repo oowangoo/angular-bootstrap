@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="bootstrap.demo">
 <head>
 	<meta charset="UTF-8">
 	<title></title>
+	<base href="/"/>
 	<link rel="stylesheet" href="/stylesheet/bootstrap.css"/>
 	<script type='text/javascript' src='/angular/angular.js'></script>
+	<script type='text/javascript' src='/angular-animate/angular-animate.js'></script>
 	<!-- begin module -->
 	<script type='text/javascript' src='/javascript/collapse/collapse.js'></script>
 	<!-- end -->
+	<script type='text/javascript' src='/index.js'></script>
+	<script type='text/javascript' src='/demo/collapse/docs/collapseCtrl.js'></script>
+
 </head>
 <body>
 	hello world
+	<ng-include src="'/demo/collapse/docs/collapse.html'"></ng-include>
 	<script src="http://localhost:35729/livereload.js"></script>
 </body>
 </html>

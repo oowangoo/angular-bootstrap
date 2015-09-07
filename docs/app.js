@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(express.static(__dirname + '\\..\\vendor'));
 app.use(express.static(__dirname + '/assets'));
+app.use(express.static(__dirname + '/static'));
 
 router = express.Router();
 
