@@ -1,7 +1,7 @@
 #
 # copy from ui.bootstrap
 #
-angular.module("ui.bootstrap",[]).directive('collapse',[
+angular.module("bootstrap.collapse",['ngAnimate']).directive('collapse',[
   '$window'
   '$animate'
   ($window,$animate)->
@@ -35,7 +35,7 @@ angular.module("ui.bootstrap",[]).directive('collapse',[
 
     expand = (elem,option)->
       elem.removeClass("collapse")
-      addAnimateClass(elem,option).addClass('collapsing')
+      addAnimateClass(elem,option)
       switch(option.align)
         when 'left'
           to = {to:{width:getOptionWidth(elem,option)+'px'}}
@@ -46,7 +46,7 @@ angular.module("ui.bootstrap",[]).directive('collapse',[
         expandDone(elem,option)
       );
 
-    expandDone = (elem，option)->
+    expandDone = (elem,option)->
       removeAnimateClass(elem)
       switch(option.model)
         when 'full'
@@ -56,7 +56,7 @@ angular.module("ui.bootstrap",[]).directive('collapse',[
             when 'left'
               elem.css({width:'auto'})
             else
-              elem.css({heigh:'auto'})
+              elem.css({height:'auto'})
 
     collapse = (elem,option)->
       if elem.hasClass('collapse') and !elem.hasClass("in")
@@ -64,13 +64,25 @@ angular.module("ui.bootstrap",[]).directive('collapse',[
 #      IMPORTANT: The height must be set before adding "collapsing" class.
 #      Otherwise, the browser attempts to animate from height 0 (in
 #      collapsing class) to the given height here.
-      elem.css({height:element[0].scrollHeight + 'px'})
-        .removeClass('collapse')
-        .addClass("collapsing")
-      $animate.removeClass(elem,'in',{
-        to:{height:"0"}
-      }).then(()->
-        collapseDone(elem)
+      switch(option.model)
+        when 'full'
+          c = {}
+        else
+          switch(option.align)
+            when 'left'
+              c = {width:getOptionWidth(elem,option)+'px'}
+            else
+              c = {height:getOptionHeight(elem,option)+'px'}
+      elem.css(c).removeClass('collapse')
+      addAnimateClass(elem,option)
+
+      switch(option.align)
+        when 'left'
+          to = {to:{width:'0'}}
+        else
+          to = {to:{height:'0'}}
+      $animate.removeClass(elem,'in',to).then(()->
+        collapseDone(elem,option)
       )
 
     collapseDone = (elem,option)->
@@ -78,7 +90,7 @@ angular.module("ui.bootstrap",[]).directive('collapse',[
         when 'left'
           elem.css({width:'0'})
         else
-          elem.css({heigh:'0'})
+          elem.css({height:'0'})
 
       removeAnimateClass(elem)
       elem.addClass("collapse")
