@@ -35,3 +35,12 @@ tbody.collapse.in { display: table-row-group; }
   @include transition-duration(.35s);
   @include transition-timing-function(ease);
 }
+// 水平方向动画
+.collapsing-h{
+  position: relative;
+  width: 0;
+  overflow: hidden;
+  @include transition-property(width, visibility);
+  @include transition-duration(.35s);
+  @include transition-timing-function(ease);
+}
