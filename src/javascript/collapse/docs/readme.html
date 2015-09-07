@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="/stylesheet/bootstrap.css"/>
+<div class="readme-collapse">
+  <h2>Collapse <small>下拉</small></h2>
+  <table class="table">
+    <tr>
+      <td>属性名</td>
+      <td>类型</td>
+      <td>可选值</td>
+      <td>说明</td>
+    </tr>
+    <tr>
+      <td>fill-model</td>
+      <td>enum</td>
+      <td>
+        <dl class="dl-horizontal">
+          <dt>auto (default)</dt>
+          <dd>自动设置高度/宽度</dd>
+          <dt>full</dt>
+          <dd>铺满高度/宽度</dd>
+          <dt>size(disabled)</dt>
+          <dd>具体大小，可以设置width,heigh，当值为单一值时根据动画方向设置宽高</dd>
+        </dl>
+      </td>
+      <td>
+        铺满宽度还是高度取决与动画的方向
+      </td>
+    </tr>
+    <tr>
+      <td>
+        collapse-offset
+      </td>
+      <td>
+        number(px)
+      </td>
+      <td>
+        number,default is 0
+      </td>
+      <td>
+        偏移量，实际高度 = 设置高度 - 偏移量
+      </td>
+    </tr>
+    <tr>
+      <td>
+        collapse-align
+      </td>
+      <td>
+        enum
+      </td>
+      <td>
+        <dl class="dl-horizontal">
+          <dt>top(default)</dt>
+          <dd>由上而下</dd>
+
+          <dt>left</dt>
+          <dd>从左到右</dd>
+        </dl>
+      </td>
+      <td>
+        动画方向
+      </td>
+    </tr>
+  </table>
+</div>
+
