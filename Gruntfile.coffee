@@ -83,7 +83,7 @@ module.exports = (grunt)->
         tasks:['copy:test']
       docs:
         files:['src/javascript/**/docs/*.*','!src/javascript/**/docs/*.coffee']
-        tasks:['copy:docs','copy:dserver']
+        tasks:['copy:docs','copy:server']
     nodemon:
       docs:
         script:'app.js'
