@@ -18,27 +18,30 @@ angular.module("bootstrap.collapse",['ngAnimate']).directive('collapse',[
           c = "collapsing"
       return elem.addClass(c)
     getOptionWidth = (elem,option)->
+      # width 使用百分比，使用元素scrollWidth宽可能不能得到正确的宽度，所以使用100%替代elem[0].scrollWidth,并且单位放在此方法中，详情见collapse demo2
       switch(option.model)
         when 'full'
-          w = $window.innerWidth
+          w = ($window.innerWidth - option.offset) + 'px'
         else
-          w = elem[0].scrollWidth
-      return (w - option.offset)
+          w = '100%' #elem[0].scrollWidth
+      return w
 
     getOptionHeight = (elem,option)->
       switch(option.model)
         when 'full'
-          h = $window.innerHeight
+          h = $window.innerHeight - option.offset
         else
           h = elem[0].scrollHeight
-      return h - option.offset
+
+      return h
 
     expand = (elem,option)->
       elem.removeClass("collapse")
       addAnimateClass(elem,option)
       switch(option.align)
         when 'left'
-          to = {to:{width:getOptionWidth(elem,option)+'px'}}
+
+          to = {to:{width:getOptionWidth(elem,option)}}
         else
           to = {to:{height:getOptionHeight(elem,option)+'px'}}
 
@@ -70,7 +73,7 @@ angular.module("bootstrap.collapse",['ngAnimate']).directive('collapse',[
         else
           switch(option.align)
             when 'left'
-              c = {width:getOptionWidth(elem,option)+'px'}
+              c = {width:getOptionWidth(elem,option)}
             else
               c = {height:getOptionHeight(elem,option)+'px'}
       elem.css(c).removeClass('collapse')
