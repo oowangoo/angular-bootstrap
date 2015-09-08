@@ -16,9 +16,9 @@
           <dt>auto (default)</dt>
           <dd>自动设置高度/宽度</dd>
           <dt>full</dt>
-          <dd>铺满高度/宽度</dd>
+          <dd>铺满高度/宽度，一般使用poisition:fixed 时使用,注：宽度 auto 时 使用width:100%;</dd>
           <dt>size(disabled)</dt>
-          <dd>具体大小，可以设置width,heigh，当值为单一值时根据动画方向设置宽高</dd>
+          <dd>具体大小，可以设置width,height，当值为单一值时根据动画方向设置宽高</dd>
         </dl>
       </td>
       <td>
@@ -36,7 +36,7 @@
         number,default is 0
       </td>
       <td>
-        偏移量，实际高度 = 设置高度 - 偏移量
+        偏移量，实际高度 = 设置高度 - 偏移量,当fill-model 为auto时无效参数
       </td>
     </tr>
     <tr>

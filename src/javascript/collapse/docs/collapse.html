@@ -1,8 +1,31 @@
 <div class="collapseDemo" ng-controller="collapseCtrl">
   <h2>collapse</h2>
-  <div>
+  <div class="demo">
+    <p>auto 从上到下模式的</p>
     <button ng-click="toggleDemo1 = !toggleDemo1">toggle collapse</button>
-    <ul class="navbar-collapse collapse" collapse="toggleDemo1">
+    <ul class="collapse" collapse="toggleDemo1">
+      <li>nav1</li>
+      <li>nav2</li>
+      <li>nav3</li>
+      <li>nav4</li>
+      <li>nav5</li>
+    </ul>
+  </div>
+  <div class="demo">
+    <p>auto 从做到右模式</p>
+    <button ng-click="toggleDemo2 = !toggleDemo2">toggle Collapse</button>
+    <ul class="collapse" collapse="toggleDemo2" collapse-align="left" style="background-color: green;">
+      <li>nav1</li>
+      <li>nav2</li>
+      <li>nav3</li>
+      <li>nav4</li>
+      <li>nav5</li>
+    </ul>
+  </div>
+  <div class="demo">
+
+    <button ng-click="toggleDemo3 = !toggleDemo3">toggle collapse</button>
+    <ul class="collapse" collapse="toggleDemo3" fill-model="full">
       <li>nav1</li>
       <li>nav2</li>
       <li>nav3</li>
